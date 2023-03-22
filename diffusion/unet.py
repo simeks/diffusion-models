@@ -52,8 +52,8 @@ def up_block(width, block_depth):
     return apply
 
 def unet(
-    image_size: tuple[int, int],
-    num_channels: int = 1,
+    image_size: int,
+    num_channels: int,
     widths: list[int] = [32, 64, 128],
     block_depth: int = 2,
 ):
@@ -68,7 +68,7 @@ def unet(
     References
         [1] https://arxiv.org/abs/1505.04597
     """
-    input = layers.Input(list(image_size) + [num_channels])
+    input = layers.Input(shape=(image_size, image_size, num_channels))
 
     x = layers.Conv2D(num_channels, kernel_size=1)(input)
     
